@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Astro.Drone — Portafolio Víctor</title>
+<style>
+:root{--bg:#0b0b0b;--accent:#00bcd4;--muted:#9a9a9a}
+html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#eee}
+header{height:260px;background:url('images/banner.jpg') center/cover no-repeat;display:flex;align-items:flex-end;padding:20px}
+header h1{margin:0;font-size:28px;text-shadow:0 2px 12px rgba(0,0,0,0.6)}
+
+/* Instagram-like horizontal carousel */
+.gallery-wrap{max-width:1100px;margin:20px auto;padding:0 18px}
+.gallery-container{display:flex;gap:16px;overflow-x:auto;padding:18px 6px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gallery-container::-webkit-scrollbar{display:none}
+.gallery-item{flex:0 0 70%;max-width:70%;height:70vh;background:#111;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* responsive */
+@media(max-width:900px){.gallery-item{flex:0 0 85%;max-width:85%;height:60vh}}
+
+/* modal zoom */
+.modal{position:fixed;inset:0;display:none;background:rgba(0,0,0,0.9);align-items:center;justify-content:center;z-index:9999}
+.modal img{max-width:95%;max-height:95%;object-fit:contain}
+.close-btn{position:absolute;right:18px;top:18px;font-size:30px;color:#fff;cursor:pointer;opacity:0.9;background:rgba(0,0,0,0.3);padding:6px 10px;border-radius:8px}
+
+/* small instructions */
+.instructions{max-width:1100px;margin:10px auto;color:var(--muted);padding:0 18px}
+</style>
+</head>
+<body>
+<header><h1>ASTRO.DRONE — Portafolio</h1></header>
+
+<div class="instructions">Desliza la galería con el dedo o el mouse. Clic en una imagen para ampliar. Puedes reemplazar las imágenes en /images por tus archivos reales (foto1.jpg ... foto20.jpg).</div>
+
+<div class="gallery-wrap">
+  <div class="gallery-container">
+    <div class="gallery-item"><img src="images/foto1.jpg" alt="foto1" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto2.jpg" alt="foto2" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto3.jpg" alt="foto3" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto4.jpg" alt="foto4" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto5.jpg" alt="foto5" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto6.jpg" alt="foto6" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto7.jpg" alt="foto7" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto8.jpg" alt="foto8" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto9.jpg" alt="foto9" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto10.jpg" alt="foto10" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto11.jpg" alt="foto11" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto12.jpg" alt="foto12" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto13.jpg" alt="foto13" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto14.jpg" alt="foto14" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto15.jpg" alt="foto15" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto16.jpg" alt="foto16" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto17.jpg" alt="foto17" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto18.jpg" alt="foto18" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto19.jpg" alt="foto19" onclick="openModal(this.src)"></div>\n    <div class="gallery-item"><img src="images/foto20.jpg" alt="foto20" onclick="openModal(this.src)"></div>\n
+  </div>
+</div>
+
+<!-- modal -->
+<div id="modal" class="modal" onclick="closeModal()">
+  <span class="close-btn" onclick="closeModal();event.stopPropagation()">✕</span>
+  <img id="modal-img" src="">
+</div>
+
+<script>
+function openModal(src) {
+  var m = document.getElementById('modal');
+  var img = document.getElementById('modal-img');
+  img.src = src;
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  var m = document.getElementById('modal');
+  var img = document.getElementById('modal-img');
+  img.src = '';
+  m.style.display = 'none';
+  document.body.style.overflow = '';
+}
+// allow Esc to close
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+</script>
+
+</body>
+</html>
